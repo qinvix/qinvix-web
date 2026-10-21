@@ -139,3 +139,35 @@ h2 { font-weight: 800; font-size: clamp(2.2rem, 5vw, 4.6rem); line-height: 1; le
 	.btn, .shelf a { transition: none; }
 }
 .contact h2 { margin-bottom: 28px; }
+
+/* Páginas legales y de soporte */
+.doc-hero { min-height: 0; gap: 20px; padding-top: 150px; padding-bottom: clamp(48px, 7vw, 96px); }
+.doc-hero h1 { font-size: clamp(2.4rem, 5.6vw, 5.2rem); max-width: 16em; }
+.doc-hero .updated { font-size: 1.1rem; }
+.doc { background: var(--ground); padding-top: clamp(64px, 9vw, 130px); padding-bottom: clamp(80px, 12vw, 180px); display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.doc-summary { position: sticky; top: 32px; }
+.doc-summary p { font-size: 1.35rem; font-weight: 600; line-height: 1.4; }
+.doc-summary a, .doc-body a { text-underline-offset: 4px; text-decoration-thickness: 2px; font-weight: 600; }
+.doc-body > :first-child { margin-top: 0; }
+.doc-body h2 { font-weight: 800; font-size: clamp(1.4rem, 2.2vw, 1.9rem); line-height: 1.15; letter-spacing: -.02em; margin: 56px 0 14px; }
+.doc-body h3 { font-weight: 800; font-size: 1.25rem; line-height: 1.2; margin: 32px 0 8px; }
+.doc-body p, .doc-body li { max-width: 40em; }
+.doc-body p { margin-bottom: 16px; }
+.doc-body ul, .doc-body ol { padding-left: 1.3em; margin-bottom: 16px; }
+.doc-body li { margin-bottom: 8px; }
+.doc-body code { font-family: ui-monospace, Menlo, monospace; font-size: .92em; background: var(--ground-2); padding: 2px 6px; }
+.doc-body .qa { margin-bottom: 36px; }
+.doc-body .qa h3 { margin-top: 0; }
+.doc-body table { border-collapse: collapse; width: 100%; max-width: 46em; margin-bottom: 16px; }
+.doc-body th, .doc-body td { text-align: left; padding: 10px 14px; vertical-align: top; }
+.doc-body tr:nth-child(odd) td { background: var(--ground-2); }
+.foot .small a { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 900px) {
+	.doc { grid-template-columns: 1fr; }
+	.doc-summary { position: static; }
+	.doc-hero { padding-top: 120px; }
+}
+.doc-body .lang-title { font-size: clamp(2rem, 3.6vw, 3rem); margin-top: 96px; }
+.doc-body .note { font-weight: 600; font-size: 1.15rem; margin-bottom: 24px; }
+.doc-body .updated-note { opacity: .8; }
+@media (max-width: 600px) { .doc-hero h1 { font-size: 1.9rem; } }
