@@ -85,6 +85,11 @@
 				border-radius: 22px;
 				box-shadow: 0 8px 24px rgba(0,0,0,0.18);
 			}
+			/* Rejilla de apps: misma altura por fila, imágenes cuadradas y botones alineados abajo */
+			.app-card { display: flex; flex-direction: column; align-items: center; padding-bottom: 2rem; }
+			.app-card .image { width: 70%; margin: 0 auto 1.25rem auto; }
+			.app-card .image img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 22%; display: block; }
+			.app-card .actions { margin-top: auto; }
 			.coming-soon-badge {
 				display: inline-block;
 				background: rgba(255,255,255,0.15);
@@ -169,8 +174,9 @@
 				<div class="row gtr-150">
 
 					<!-- TruCocina -->
-					<div class="col-4 col-6-medium col-12-small">
-						<span class="image fit"><img src="images/trucocina-icon.png" alt="TruCocina" style="width:70%;margin:0 auto;border-radius:22%" /></span>
+					<div class="col-4 col-6-medium col-12-small app-card">
+						<span class="image fit"><img src="images/trucocina-icon.png" alt="TruCocina" /></span>
+						<span class="coming-soon-badge" aria-hidden="true" style="visibility:hidden">Próximamente</span>
 						<h3>TruCocina</h3>
 						<p>Guías de cocina, calculadoras de raciones, tiempos de cocción y trucos de rescate para cuando algo sale mal. Tu compañero de cocina de cabecera.</p>
 						<ul class="actions special">
@@ -180,8 +186,8 @@
 					</div>
 
 					<!-- AunQueda -->
-					<div class="col-4 col-6-medium col-12-small">
-						<span class="image fit"><img src="images/aunqueda-icon.png" alt="AunQueda" style="width:70%;margin:0 auto;border-radius:22%" /></span>
+					<div class="col-4 col-6-medium col-12-small app-card">
+						<span class="image fit"><img src="images/aunqueda-icon.png" alt="AunQueda" /></span>
 						<span class="coming-soon-badge">Próximamente</span>
 						<h3>AunQueda</h3>
 						<p>Cuentas atrás con widgets muy personalizables: vacaciones, cumpleaños, Reyes… Estilos, fotos, plantillas por país y sincronización con iCloud. Gratis, sin anuncios.</p>
@@ -190,8 +196,8 @@
 						</ul>
 					</div>
 
-					<div class="col-4 col-6-medium col-12-small">
-						<span class="image fit"><img src="images/kuanto-icon.png" alt="Kuanto" style="width:70%;margin:0 auto;border-radius:22%" /></span>
+					<div class="col-4 col-6-medium col-12-small app-card">
+						<span class="image fit"><img src="images/kuanto-icon.png" alt="Kuanto" /></span>
 						<span class="coming-soon-badge">Próximamente</span>
 						<h3>Kuanto</h3>
 						<p>Minijuegos de estimación: adivina cifras del mundo real y puntúa según lo cerca que estés. Datos curiosos, retos diarios y un modo mapa.</p>
@@ -200,8 +206,8 @@
 						</ul>
 					</div>
 
-					<div class="col-4 col-6-medium col-12-small">
-						<span class="image fit"><img src="images/rolix-icon.png" alt="Rolix" style="width:70%;margin:0 auto;border-radius:22%" /></span>
+					<div class="col-4 col-6-medium col-12-small app-card">
+						<span class="image fit"><img src="images/rolix-icon.png" alt="Rolix" /></span>
 						<span class="coming-soon-badge">Próximamente</span>
 						<h3>Rolix</h3>
 						<p>Colección de seis puzzles lógicos con dificultad progresiva: Orbit, Shift, Nonogram, Slitherlink, Hashi y Nurikabe. Gratis, sin anuncios.</p>
@@ -210,8 +216,8 @@
 						</ul>
 					</div>
 
-					<div class="col-4 col-6-medium col-12-small">
-						<span class="image fit"><img src="images/gradix-icon.png" alt="Gradix" style="width:70%;margin:0 auto;border-radius:22%" /></span>
+					<div class="col-4 col-6-medium col-12-small app-card">
+						<span class="image fit"><img src="images/gradix-icon.png" alt="Gradix" /></span>
 						<span class="coming-soon-badge">Próximamente</span>
 						<h3>Gradix</h3>
 						<p>Prepara tus exámenes día a día: resumen por temas, tests con corrección, fórmulas y figuras, y un plan diario hasta la fecha. Gratis, sin anuncios.</p>
@@ -220,7 +226,7 @@
 						</ul>
 					</div>
 
-					<div class="col-4 col-6-medium col-12-small">
+					<div class="col-4 col-6-medium col-12-small app-card">
 						<span class="image fit"><img src="images/pic04.png" alt="Próximamente" /></span>
 						<span class="coming-soon-badge">Próximamente</span>
 						<h3>Más en camino</h3>
