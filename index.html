@@ -9,112 +9,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet" />
-	<style>
-		:root {
-			--navy: #0b2a43;
-			--navy-2: #14405f;
-			--ground: #f3f6f8;
-			--ground-2: #e4ebf0;
-			--ink: #0c1c2c;
-			--teal: #1fd1b2;
-			--white: #ffffff;
-			--gutter: clamp(20px, 4vw, 56px);
-			--ease: cubic-bezier(.2, .7, .2, 1);
-		}
-		* { box-sizing: border-box; margin: 0; padding: 0; }
-		html { scroll-behavior: smooth; }
-		body { font-family: 'Manrope', system-ui, sans-serif; font-size: 1.125rem; line-height: 1.6; color: var(--ink); background: var(--ground); -webkit-font-smoothing: antialiased; }
-		img { display: block; max-width: 100%; height: auto; }
-		a { color: inherit; }
-		:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
-		.wrap { padding-left: var(--gutter); padding-right: var(--gutter); }
-
-		/* Movimiento: solo si hay JS; sin él todo se ve */
-		.js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); transition-delay: calc(var(--d, 0) * 80ms); }
-		.js .reveal.in { opacity: 1; transform: none; }
-
-		/* Botones: planos, esquinas rectas */
-		.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 32px; font: 800 1.05rem/1 'Manrope', sans-serif; text-decoration: none; background: var(--ink); color: var(--white); border: 0; cursor: pointer; transition: transform .2s var(--ease), background-color .2s; }
-		.btn:hover { transform: translateY(-3px); }
-		.btn:active { transform: scale(.97); }
-		.btn.on-dark { background: var(--teal); color: var(--ink); }
-		.link { font-weight: 800; text-underline-offset: 5px; text-decoration-thickness: 2px; }
-
-		/* Barra */
-		.bar { position: absolute; top: 0; left: 0; right: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; padding-top: 22px; padding-bottom: 22px; color: var(--white); }
-		.bar .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.3rem; text-decoration: none; letter-spacing: -.01em; }
-		.bar .brand img { width: 48px; height: 48px; object-fit: contain; }
-		.bar nav { display: flex; gap: clamp(18px, 3vw, 40px); }
-		.bar nav a { font-weight: 600; text-decoration: none; padding: 10px 0; }
-		.bar nav a:hover { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; }
-
-		/* Primera pantalla */
-		.hero { position: relative; min-height: min(100svh, 800px); background: var(--navy); color: var(--white); display: flex; flex-direction: column; justify-content: flex-start; gap: clamp(48px, 7vw, 96px); padding-top: 150px; padding-bottom: clamp(40px, 6vw, 72px); }
-		.hero h1 { font-weight: 800; font-size: clamp(2.9rem, 7.4vw, 7.2rem); line-height: .98; letter-spacing: -.035em; max-width: 11em; }
-		.hero h1 br { display: block; }
-		.hero-row { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(32px, 5vw, 80px); align-items: end; }
-		.hero p { font-size: 1.3rem; max-width: 30em; margin-bottom: 32px; }
-		.shelf { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(12px, 1.6vw, 24px); list-style: none; }
-		.shelf a { display: block; transition: transform .3s var(--ease); }
-		.shelf a:hover { transform: translateY(-8px); }
-		.shelf img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 22%; }
-
-		/* Apps */
-		.apps-head { background: var(--ground); padding-top: clamp(80px, 12vw, 180px); padding-bottom: clamp(40px, 6vw, 80px); display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 5vw, 80px); align-items: end; }
-		h2 { font-weight: 800; font-size: clamp(2.2rem, 5vw, 4.6rem); line-height: 1; letter-spacing: -.03em; }
-		.apps-head p { font-size: 1.25rem; }
-		.app { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: stretch; background: var(--ground); }
-		.app:nth-of-type(even) { background: var(--ground-2); }
-		.app .text { padding-top: clamp(64px, 9vw, 130px); padding-bottom: clamp(64px, 9vw, 130px); display: flex; flex-direction: column; align-items: flex-start; }
-		.app .icon { width: clamp(88px, 9vw, 132px); aspect-ratio: 1; border-radius: 22%; margin-bottom: 28px; }
-		.app h3 { font-weight: 800; font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1; letter-spacing: -.03em; margin-bottom: 18px; }
-		.app .text p { max-width: 28em; margin-bottom: 20px; }
-		.app .status { font-weight: 800; margin-bottom: 28px; }
-		.shots { display: flex; justify-content: center; align-items: flex-end; gap: clamp(14px, 2vw, 28px); height: clamp(380px, 38vw, 560px); overflow: hidden; align-self: end; }
-		.shots img { width: clamp(150px, 15vw, 240px); border-radius: 28px 28px 0 0; }
-		.shots img:last-child { margin-bottom: -64px; }
-
-		/* Principios */
-		.why { background: var(--teal); padding-top: clamp(80px, 12vw, 180px); padding-bottom: clamp(80px, 12vw, 180px); display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(40px, 7vw, 120px); align-items: start; }
-		.why h2 { margin-bottom: 32px; }
-		.why .intro p + p { margin-top: 18px; }
-		.why .points { display: grid; gap: 48px; }
-		.why h3 { font-weight: 800; font-size: clamp(1.5rem, 2.6vw, 2.2rem); line-height: 1.1; letter-spacing: -.02em; margin-bottom: 10px; }
-
-		/* Contacto y pie */
-		.contact { background: var(--navy); color: var(--white); padding-top: clamp(80px, 12vw, 180px); padding-bottom: clamp(64px, 9vw, 120px); display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px clamp(32px, 6vw, 96px); align-items: end; }
-		.contact h2 { font-size: clamp(3rem, 9vw, 9rem); letter-spacing: -.04em; }
-		.contact p { font-size: 1.3rem; max-width: 30em; }
-		.contact .actions { display: flex; justify-content: flex-end; }
-		.contact .btn { font-size: clamp(1.1rem, 2.2vw, 1.6rem); min-height: 72px; padding: 0 40px; }
-		.foot { background: var(--navy); color: var(--white); padding-bottom: 28px; }
-		.foot .name { font-weight: 800; font-size: 21vw; line-height: .8; letter-spacing: -.05em; color: var(--navy-2); white-space: nowrap; overflow: hidden; user-select: none; }
-		.foot .name::before { content: 'Qinvix'; }
-		.foot .small { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; padding-top: 24px; font-size: .95rem; }
-
-		@media (max-width: 900px) {
-			.hero { padding-top: 120px; }
-			.hero h1 br { display: none; }
-			.hero-row, .apps-head, .app, .why { grid-template-columns: 1fr; }
-			.hero-row { gap: 40px; align-items: start; }
-			.app .text { padding-bottom: 40px; }
-			.shots { height: clamp(300px, 80vw, 420px); }
-			.shots img { width: clamp(130px, 36vw, 200px); }
-			.contact { grid-template-columns: 1fr; }
-			.contact .actions { justify-content: flex-start; }
-			.contact .btn { width: 100%; }
-		}
-		@media (max-width: 600px) {
-			.hero { min-height: 0; }
-			.bar nav a:nth-child(2) { display: none; }
-			.bar nav a { white-space: nowrap; }
-		}
-		@media (prefers-reduced-motion: reduce) {
-			html { scroll-behavior: auto; }
-			.js .reveal { opacity: 1; transform: none; transition: none; }
-			.btn, .shelf a { transition: none; }
-		}
-	</style>
+	<link rel="stylesheet" href="assets/css/qx.css" />
 	<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -128,6 +23,7 @@
 				<a href="#contacto">Contacto</a>
 			</nav>
 		</div>
+		<img class="hero-logo reveal" src="logo_transparente.png" alt="" width="300" height="300" />
 		<h1 class="reveal">Apps útiles,<br /> sin complicaciones.</h1>
 		<div class="hero-row">
 			<div class="reveal" style="--d:2">
@@ -155,9 +51,12 @@
 				<img class="icon reveal" src="images/trucocina-icon.png" alt="" width="512" height="512" />
 				<h3 class="reveal" style="--d:1">TruCocina</h3>
 				<p class="reveal" style="--d:2">Guías de cocina, calculadoras de raciones, tiempos de cocción y trucos de rescate para cuando algo sale mal. Tu compañero de cocina de cabecera.</p>
-				<p class="status reveal" style="--d:2">Disponible</p>
-				<!-- Actualiza el href con el enlace real de App Store cuando esté publicada -->
-				<a class="btn reveal" style="--d:3" href="#">App Store</a>
+				<p class="status reveal" style="--d:2">Disponible en App Store y Google Play</p>
+				<div class="store reveal" style="--d:3">
+					<a class="btn" href="https://apps.apple.com/app/id6760367574" rel="noopener">App Store</a>
+					<a class="btn" href="https://play.google.com/store/apps/details?id=app.trucocina.mobile" rel="noopener">Google Play</a>
+					<a class="link" href="https://trucocina.app">Más información</a>
+				</div>
 			</div>
 			<div class="shots">
 				<img class="reveal" src="images/shots/trucocina-1.jpg" alt="Guías de TruCocina en el móvil" width="480" height="1040" loading="lazy" />
@@ -170,8 +69,11 @@
 				<img class="icon reveal" src="images/aunqueda-icon.png" alt="" width="512" height="512" />
 				<h3 class="reveal" style="--d:1">AunQueda</h3>
 				<p class="reveal" style="--d:2">Cuentas atrás con widgets muy personalizables: vacaciones, cumpleaños, Reyes… Estilos, fotos, plantillas por país y sincronización con iCloud. Gratis, sin anuncios.</p>
-				<p class="status reveal" style="--d:2">Próximamente</p>
-				<a class="btn reveal" style="--d:3" href="aunqueda/">Ver más</a>
+				<p class="status reveal" style="--d:2">Disponible en App Store</p>
+				<div class="store reveal" style="--d:3">
+					<a class="btn" href="https://apps.apple.com/app/id6819066654" rel="noopener">App Store</a>
+					<a class="link" href="aunqueda/index.html">Más información</a>
+				</div>
 			</div>
 			<div class="shots">
 				<img class="reveal" src="images/shots/aunqueda-1.jpg" alt="Pantalla de inicio de AunQueda" width="460" height="1000" loading="lazy" />
@@ -184,8 +86,11 @@
 				<img class="icon reveal" src="images/kuanto-icon.png" alt="" width="512" height="512" />
 				<h3 class="reveal" style="--d:1">Kuanto</h3>
 				<p class="reveal" style="--d:2">Minijuegos de estimación: adivina cifras del mundo real y puntúa según lo cerca que estés. Datos curiosos, retos diarios y un modo mapa.</p>
-				<p class="status reveal" style="--d:2">Próximamente</p>
-				<a class="btn reveal" style="--d:3" href="kuanto.html">Ver más</a>
+				<p class="status reveal" style="--d:2">Disponible en App Store</p>
+				<div class="store reveal" style="--d:3">
+					<a class="btn" href="https://apps.apple.com/app/id6818816652" rel="noopener">App Store</a>
+					<a class="link" href="kuanto.html">Más información</a>
+				</div>
 			</div>
 			<div class="shots">
 				<img class="reveal" src="images/shots/kuanto-1.jpg" alt="Pantalla de inicio de Kuanto" width="414" height="900" loading="lazy" />
@@ -198,8 +103,11 @@
 				<img class="icon reveal" src="images/rolix-icon.png" alt="" width="512" height="512" />
 				<h3 class="reveal" style="--d:1">Rolix</h3>
 				<p class="reveal" style="--d:2">Colección de seis puzzles lógicos con dificultad progresiva: Orbit, Shift, Nonogram, Slitherlink, Hashi y Nurikabe. Gratis, sin anuncios.</p>
-				<p class="status reveal" style="--d:2">Próximamente</p>
-				<a class="btn reveal" style="--d:3" href="rolix.html">Ver más</a>
+				<p class="status reveal" style="--d:2">Disponible en App Store</p>
+				<div class="store reveal" style="--d:3">
+					<a class="btn" href="https://apps.apple.com/app/id6819058074" rel="noopener">App Store</a>
+					<a class="link" href="rolix.html">Más información</a>
+				</div>
 			</div>
 			<div class="shots">
 				<img class="reveal" src="images/shots/rolix-1.jpg" alt="Menú de Rolix con los seis puzzles" width="480" height="1043" loading="lazy" />
@@ -212,8 +120,10 @@
 				<img class="icon reveal" src="images/gradix-icon.png" alt="" width="512" height="512" />
 				<h3 class="reveal" style="--d:1">Gradix</h3>
 				<p class="reveal" style="--d:2">Prepara tus exámenes día a día: resumen por temas, tests con corrección, fórmulas y figuras, y un plan diario hasta la fecha. Gratis, sin anuncios.</p>
-				<p class="status reveal" style="--d:2">Próximamente</p>
-				<a class="btn reveal" style="--d:3" href="gradix.html">Ver más</a>
+				<p class="status reveal" style="--d:2">Próximamente en App Store</p>
+				<div class="store reveal" style="--d:3">
+					<a class="link" href="gradix.html">Más información</a>
+				</div>
 			</div>
 			<div class="shots">
 				<img class="reveal" src="images/shots/gradix-1.jpg" alt="Proyecto de estudio en Gradix" width="480" height="1043" loading="lazy" />
